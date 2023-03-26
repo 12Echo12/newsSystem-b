@@ -1,0 +1,9 @@
+.span{
+    float: right;
+}
+.span span{
+    margin-left: 10px;
+}
+.drop{
+    margin-right: 20px;
+}
