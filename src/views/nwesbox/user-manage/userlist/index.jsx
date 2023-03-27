@@ -7,7 +7,7 @@ import {
 } from '@ant-design/icons';
 import axios from 'axios';
 import './index.css'
-import UserForm from '../../../components/userForm/index';
+import UserForm from '../../../../components/user-manage/userForm/index';
 
 const { confirm } = Modal;
 
@@ -20,9 +20,14 @@ export default function UserList() {
   const addRef = useRef();
   const updateRef = useRef();
   const [updateOpen, setUpdateOpen] = useState(false);
+  const { region, roleId ,username} = JSON.parse(localStorage.getItem("token"));
   useEffect(() => {
     axios.get('http://localhost:8000/users?_expand=role').then((res) => {
-      setDataSource(res.data);
+      let list = res.data;
+      setDataSource(roleId===1?list:[
+        ...list.filter((i) => i.username === username),
+        ...list.filter((i) => i.region===region && i.roleId===3)
+      ]);
     })
   }, [])
   useEffect(() => {
@@ -122,7 +127,7 @@ export default function UserList() {
 
         }}
       >
-        <UserForm roleList={roleList} regionList={regionList} ref={addRef} />
+        <UserForm roleList={roleList} regionList={regionList} ref={addRef} isAdd={true} />
       </Modal>
     )
   }

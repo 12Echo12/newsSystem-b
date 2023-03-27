@@ -45,7 +45,7 @@ function TopHeader(props) {
       <Header style={{ padding: "0 16px", background: colorBgContainer }}>
           {collapsed ? <MenuFoldOutlined size={{width:"20px"}} onClick={handleCollapsed} ></MenuFoldOutlined> : <MenuUnfoldOutlined  onClick={handleCollapsed}></MenuUnfoldOutlined>}
           <div className={style.span}>
-              <span>欢迎&nbsp;<b>{username}</b>&nbsp;回来</span>   
+              <span>欢迎&nbsp;<b style={{color:"#1890ff"}}>{username}</b>&nbsp;回来</span>   
               {/* 下拉菜单 */}
               <Dropdown className={style.drop}
                   menu={{

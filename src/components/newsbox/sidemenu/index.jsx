@@ -24,27 +24,22 @@ function SideMenu(props) {
     const [collapsed, setCollapsed] = useState(false);
     const [menu, setMenu] = useState([]);
     const location = useLocation();
+    const { role: { rights } } = JSON.parse(localStorage.getItem("token"))
     useEffect(() => {
         axios.get('http://localhost:8000/rights?_embed=children').then((res) => {
             res.data = res.data.filter((ifa) => {
-                return ifa.pagepermisson === 1;
+                return ifa.pagepermisson === 1 && rights.includes(ifa.key);
             })
             res.data.map((item) => {
                 item.label = item.title.slice();
                 item.icon = iconList[item.key];
-                // item.expandIcon = (p) => {
-                //     if (item.children.length)
-                //         return <DownOutlined style={{fontSize:"10px"}}/>;
-                //     else
-                //         return <></>
-                // }
                 if (item.children) {
                     item.children.map((ic) => {
                         ic.label = ic.title.slice();
                         ic.icon = iconList[ic.key];
                     })
                     item.children = item.children.filter((ic) => {
-                        return ic.pagepermisson === 1;
+                        return ic.pagepermisson === 1 && rights.includes(ic.key);
                     })
                 }
             })
