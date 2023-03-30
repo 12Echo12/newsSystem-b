@@ -140,6 +140,7 @@
         "/news-manage/update/:id",
         "/news-manage/preview/:id",
         "/news-manage/draft",
+        "/audit-manage",
         "/audit-manage/list",
         "/publish-manage",
         "/publish-manage/unpublished",
@@ -553,6 +554,48 @@
       "view": 890,
       "id": 8,
       "publishTime": 1615778917615
+    },
+    {
+      "title": "aaaa",
+      "categoryId": 4,
+      "content": "<p>w</p>\n",
+      "region": "全球",
+      "author": "admin",
+      "roleId": 1,
+      "auditState": 1,
+      "publishState": 0,
+      "createTime": 1680008353377,
+      "star": 0,
+      "view": 0,
+      "id": 9
+    },
+    {
+      "title": "西门",
+      "categoryId": 2,
+      "content": "<p>aaa</p>\n",
+      "region": "南极洲",
+      "author": "西门吹灯",
+      "roleId": 3,
+      "auditState": 2,
+      "publishState": 1,
+      "createTime": 1680147452609,
+      "star": 0,
+      "view": 0,
+      "id": 10
+    },
+    {
+      "title": "西门",
+      "categoryId": 4,
+      "content": "<p>pppp</p>\n",
+      "region": "南极洲",
+      "author": "西门吹灯",
+      "roleId": 3,
+      "auditState": 3,
+      "publishState": 1,
+      "createTime": 1680147990589,
+      "star": 0,
+      "view": 0,
+      "id": 11
     }
   ]
 }

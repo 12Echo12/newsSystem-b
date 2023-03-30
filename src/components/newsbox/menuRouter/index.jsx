@@ -12,9 +12,10 @@ import AuditList from "../../../views/nwesbox/audit-manage/auditlist"
 import NewsUnpublished from "../../../views/nwesbox/publish-manage/newsunpublished"
 import NewsPublished from "../../../views/nwesbox/publish-manage/newspublished"
 import NewsSunset from "../../../views/nwesbox/publish-manage/newssunset"
-
 import axios from 'axios'
 import NotFound from '../../../views/nwesbox/home/NotFound'
+import NewsPreview from '../../../views/nwesbox/news-manage/newspreview'
+import NewsUpdate from '../../../views/nwesbox/news-manage/newsupdate'
 
 const menuRouterComMap = {
     "/home": Home,
@@ -28,13 +29,15 @@ const menuRouterComMap = {
     "/audit-manage/list": AuditList,
     "/publish-manage/unpublished": NewsUnpublished,
     "/publish-manage/published": NewsPublished,
-    "/publish-manage/sunset": NewsSunset
+    "/publish-manage/sunset": NewsSunset,
+    "/news-manage/preview/:id": NewsPreview,
+    "/news-manage/update/:id": NewsUpdate
 }
 
 export default function MenuRouter() {
     const [backRouterList, setBackRouterList] = useState([]);
     const checkRoute = (item) => {
-        if ((menuRouterComMap[item.key] !== undefined) && (item.pagepermisson===1))
+        if ((menuRouterComMap[item.key] !== undefined) && (item.pagepermisson === 1 || item.routepermisson === 1))
             return true;
         else
             return false;
@@ -63,7 +66,7 @@ export default function MenuRouter() {
               backRouterList.map(item => {
                   if (checkRoute(item) && checkUserPermisson(item))
                       return (
-                          <Route path={item.key} component={menuRouterComMap[item.key]} exact />
+                          <Route path={item.key} component={menuRouterComMap[item.key]} exact key={item.key} />
                       )
                   return null
               })
