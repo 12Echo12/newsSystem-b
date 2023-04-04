@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Descriptions } from 'antd';
+import { PageHeader } from '@ant-design/pro-layout';
 import axios from 'axios';
 import moment from 'moment/moment';
 
@@ -19,7 +20,8 @@ export default function NewsPreview(props) {
           {
               content && 
               <div>
-                      <Descriptions title={content.title} style={{margin:"0 24px"}}>
+                      <PageHeader title="返回" onBack={() => props.history.goBack()} />
+                      <Descriptions onBack={() => props.history.goBack()} title={content.title} style={{ margin: "0 24px" }}>
                           <Descriptions.Item label="创建者">{content.author}</Descriptions.Item>
                           <Descriptions.Item label="创建时间">{moment(content.createTime).format("YYYY-MM-DD HH:mm:ss")}</Descriptions.Item>
                           <Descriptions.Item label="发布时间">o</Descriptions.Item>

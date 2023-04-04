@@ -50,11 +50,12 @@ export default function AuditList(props) {
     confirm({
       title: '您确定要发布么?',
       icon: <ExclamationCircleFilled />,
-      content: '确发布点击OK,取消点击Cancel',
+      content: '确定发布点击OK,取消点击Cancel',
       onOk() {
+        setDataSource(dataSource.filter(i => i.id !== item.id));
         axios.patch(`http://localhost:8000/news/${item.id}`, {
           publishState: 2,
-          publishTime: Date.noe()
+          publishTime: Date.now()
         })
         notification.open({
           message: '通知',

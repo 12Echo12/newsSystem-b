@@ -1,13 +1,13 @@
 import React, { useEffect, useState} from 'react';
-import { Layout, Menu, theme } from 'antd';
+import { Layout, Menu} from 'antd';
 import './index.css'
 import {
     DownOutlined,
     UserOutlined,
-    VideoCameraOutlined,
 } from '@ant-design/icons';
 import axios from 'axios';
 import { useLocation, withRouter, useNavigate } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const { Sider } = Layout;
 
@@ -57,7 +57,7 @@ function SideMenu(props) {
         // props.history.push(e.key);
     }
     return (
-        <Sider trigger={null} collapsible collapsed={collapsed} className="sider">
+        <Sider trigger={null} collapsible collapsed={props.collapsed} className="sider">
             <div className="logo1" >全球新闻发布系统</div>
             <Menu
                 theme="dark"
@@ -71,4 +71,9 @@ function SideMenu(props) {
         </Sider>
   )
 }
-export default withRouter(SideMenu);
+const mapStateToProps = ({ collapsedReducer }) => {
+    return {
+        collapsed:collapsedReducer.collapsed,
+    }
+}
+export default connect(mapStateToProps)(withRouter(SideMenu));

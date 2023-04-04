@@ -13,9 +13,12 @@ import NewsUnpublished from "../../../views/nwesbox/publish-manage/newsunpublish
 import NewsPublished from "../../../views/nwesbox/publish-manage/newspublished"
 import NewsSunset from "../../../views/nwesbox/publish-manage/newssunset"
 import axios from 'axios'
-import NotFound from '../../../views/nwesbox/home/NotFound'
+import NotFound from '../../../views/nwesbox/NotFound'
 import NewsPreview from '../../../views/nwesbox/news-manage/newspreview'
 import NewsUpdate from '../../../views/nwesbox/news-manage/newsupdate'
+import SelfCenter from '../../../views/nwesbox/selfCenter'
+import { connect } from 'react-redux'
+import { Spin } from 'antd'
 
 const menuRouterComMap = {
     "/home": Home,
@@ -34,7 +37,7 @@ const menuRouterComMap = {
     "/news-manage/update/:id": NewsUpdate
 }
 
-export default function MenuRouter() {
+function MenuRouter(props) {
     const [backRouterList, setBackRouterList] = useState([]);
     const checkRoute = (item) => {
         if ((menuRouterComMap[item.key] !== undefined) && (item.pagepermisson === 1 || item.routepermisson === 1))
@@ -60,7 +63,9 @@ export default function MenuRouter() {
             ])
         })
     }, [])
-  return (
+    console.log(props);
+    return (
+    <Spin spinning={props.spin}>
       <Switch>
           {
               backRouterList.map(item => {
@@ -71,12 +76,20 @@ export default function MenuRouter() {
                   return null
               })
           }
-              < Redirect from="/" to="/home" exact/>
+                < Redirect from="/" to="/home" exact />
+                <Route path="/self-center" component={SelfCenter} exact key="28" />
           {
               backRouterList.length!==0 && <Route path ="*" component={NotFound}/>
           }
           
-        
-      </Switch>
+        </Switch>
+    </Spin>
   )
 }
+
+const mapStateToProps = ({ spinReducer }) => {
+    return {
+        spin: spinReducer.spin
+    }
+}
+export default connect(mapStateToProps)(MenuRouter);

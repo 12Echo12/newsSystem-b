@@ -17,7 +17,7 @@ export default function Login(props) {
     })
   }
   return (
-    <div style={{ height: "100%" ,zIndex:0}}>
+    <div style={{ height: "100%", zIndex: 0, color: "aliceblue" }}>
       <Particles height={document.documentElement.clientHeight}
         params={
           {
@@ -64,19 +64,22 @@ export default function Login(props) {
           </Form.Item>
           <Form.Item>
             <Form.Item name="remember" valuePropName="checked" noStyle>
-              <Checkbox>Remember me</Checkbox>
+              <Checkbox style={{ color:"aliceblue"}}>Remember me</Checkbox>
             </Form.Item>
 
             <a className="login-form-forgot" href="">
               Forgot password
             </a>
           </Form.Item>
-
           <Form.Item>
             <Button type="primary" htmlType="submit" className="login-form-button">
               登陆
             </Button>
             Or <a href="">register now!</a>
+            <Button type="primary" onClick={() => { props.history.push('/news') }} style={{marginLeft:"120px"}}>
+              游客预览
+            </Button>
+            <a href="" style={{ color:"aliceblue" , marginLeft:"20px"}}>visit now!</a>
           </Form.Item>
         </Form>
       </div>

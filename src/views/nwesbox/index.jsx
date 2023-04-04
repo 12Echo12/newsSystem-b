@@ -7,7 +7,6 @@ import MenuRouter from '../../components/newsbox/menuRouter';
 import NProgress from 'nprogress';
 import 'nprogress/nprogress.css'
 
-
 const {Content} = Layout
 
 export default function NewsSandBox() {
@@ -23,16 +22,16 @@ export default function NewsSandBox() {
           <SideMenu></SideMenu>
           <Layout className="site-layout">
               <TopHeader></TopHeader>
-              <Content
-                  style={{
-                      margin: '24px 16px',
-                      padding: 24,
-                      background: colorBgContainer,
-                      overflow:"auto"
-                  }}
-              >
-                  <MenuRouter></MenuRouter>
-              </Content>
+                  <Content
+                      style={{
+                          margin: '24px 16px',
+                          padding: 24,
+                          background: colorBgContainer,
+                          overflow: "auto"
+                      }}
+                  >
+                      <MenuRouter></MenuRouter>
+                  </Content>
           </Layout>
      </Layout>
   )
